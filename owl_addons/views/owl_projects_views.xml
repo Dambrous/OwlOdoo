@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="owl_projects_form_view" model="ir.ui.view">
+        <field name="name">owl.projects.form.view</field>
+        <field name="model">owl.projects</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="get_owl_project" type="object" class="oe_stat_button" icon="fa-arrow-right">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Owl Project</span>
+                            </div>
+                        </button>
+                    </div>
+                    <group readonly="1">
+                        <group name="general_information">
+                            <field name="name"/>
+                        </group>
+                        <!--                        <group>-->
+                        <!--                            <field name="create_date" string="Import Date"/>-->
+                        <!--                            <field name="status" readonly="1"/>-->
+                        <!--                        </group>-->
+                    </group>
+                    <!--                    <group>-->
+                    <!--                        <group string="N° Orders">-->
+                    <!--                            <field name="n_total_order" readonly="1"/>-->
+                    <!--                            <field name="n_order_imported" readonly="1"/>-->
+                    <!--                            <field name="n_order_already_present_in_database" readonly="1"/>-->
+                    <!--                        </group>-->
+                    <!--                        <group string="Summary Import PDF">-->
+                    <!--                            <button name="download_pdf" string="Download" type="object" class="oe_highlight"-->
+                    <!--                                    icon="fa-file-pdf-o"/>-->
+                    <!--                        </group>-->
+                    <!--                    </group>-->
+                    <notebook>
+                        <page string="Info" name="summary_orders">
+                            <group colspan="2" string="Additional Info">
+                                <!--                                <field name="bav_website_order_line_ids" string="Exposed imported orders" nolabel="1"-->
+                                <!--                                       readonly="1">-->
+                                <!--                                    <tree default_order="is_imported_from_website desc">-->
+                                <!--                                        <field name="sale_order_id" readonly="1"/>-->
+                                <!--                                        <field name="state_bav_sale_order" readonly="1"/>-->
+                                <!--                                        <field name="is_imported_from_website" string="Imported From Website"-->
+                                <!--                                               readonly="1"/>-->
+                                <!--                                        <field name="is_already_present_in_odoo" string="Already Present In Odoo"-->
+                                <!--                                               readonly="1"/>-->
+                                <!--                                        <field name="is_notified_event0" string="Notified To Website [EventID=0]"-->
+                                <!--                                               readonly="1"/>-->
+                                <!--                                    </tree>-->
+                                <!--                                </field>-->
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="owl_projects_tree_view" model="ir.ui.view">
+        <field name="name">owl.projects.tree.view</field>
+        <field name="model">owl.projects</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="owl_tree_action" model="ir.actions.act_window">
+        <field name="name">Owl Projects</field>
+        <field name="res_model">owl.projects</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem
+            id="owl_menu_root_root"
+            name="OWL"
+            web_icon="owl_addons,static/src/img/owl_icon.png"
+            sequence="1"/>
+    />
+
+    <menuitem
+            id="owl_projects_menu"
+            name="Owl Projects"
+            parent="owl_menu_root_root"
+            action="owl_tree_action"/>
+</odoo>
